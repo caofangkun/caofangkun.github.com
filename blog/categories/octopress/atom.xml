@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | CaoKun's Blog]]></title>
   <link href="http://caokun.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-26T21:04:16+08:00</updated>
+  <updated>2012-12-26T21:11:30+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -37,6 +37,14 @@
 <code>javascript
 sudo apt-get install ruby1.9.3
 sudo aptitude install ruby1.9.1-dev
+</code>
+可以检查下系统的 /usr/bin下安装有多少个版本的ruby
+并将默认的软链接指向到1.9.3版本
+<code>javascript
+~# rm -rf /usr/bin/ruby  
+~# ln -s   /usr/bin/ruby1.9.3  /usr/bin/ruby
+~# ruby -v
+ruby 1.9.3p0 (2011-10-30 revision 33570) [i686-linux]
 </code></li>
 <li>安装依赖
 <code>javascript
