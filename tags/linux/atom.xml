@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[CaoKun's Blog]]></title>
-  <link href="http://caokun.me/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: linux | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/tags/linux/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
   <updated>2012-12-26T20:25:11+08:00</updated>
   <id>http://caokun.me/</id>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Hive Configuration Explanations]]></title>
-    <link href="http://caokun.me/blog/2012/12/26/hive-configuration-explanations/"/>
-    <updated>2012-12-26T13:56:00+08:00</updated>
-    <id>http://caokun.me/blog/2012/12/26/hive-configuration-explanations</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[ssh免密码登录]]></title>
