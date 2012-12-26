@@ -4,7 +4,7 @@
   <title><![CDATA[CaoKun's Blog]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-26T20:28:18+08:00</updated>
+  <updated>2012-12-26T21:04:16+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -12,6 +12,146 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用GitHub和OctoPress搭建个人blog]]></title>
+    <link href="http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress/"/>
+    <updated>2012-12-26T20:33:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress</id>
+    <content type="html"><![CDATA[<h2>使用GitHub和OctoPress搭建个人blog</h2>
+
+<h2>安装GitHub</h2>
+
+<h2>创建github工程并配置免密码服务</h2>
+
+<ul>
+<li>建github工程</li>
+<li>配置免密码服务</li>
+</ul>
+
+
+<h2>安装Ruby</h2>
+
+<ul>
+<li>安装Ruby 1.9.3</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.3</span>
+</span><span class='line'>  <span class="nx">sudo</span> <span class="nx">aptitude</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.1</span><span class="o">-</span><span class="nx">dev</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>安装依赖</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">gem</span> <span class="nx">install</span> <span class="nx">bundler</span>
+</span><span class='line'>  <span class="nx">rbenv</span> <span class="nx">rehash</span>
+</span><span class='line'>  <span class="nx">bundle</span> <span class="nx">install</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装Octopress</h2>
+
+<ul>
+<li>安装默认的Octopress主题</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">rake</span> <span class="nx">install</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>生产部署文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">setup_github_pages</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>修改CNAME文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">~</span><span class="err">/myworkspace/octopress/source$ cat CNAME </span>
+</span><span class='line'><span class="nx">caokun</span><span class="p">.</span><span class="nx">me</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>编译并部署</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">generate</span>
+</span><span class='line'><span class="nx">rake</span> <span class="nx">deploy</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如上两个命令和如下命令等价的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">gen_deploy</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>提交代码到Github</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span>
+</span><span class='line'>  <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s1">&#39;your message&#39;</span>
+</span><span class='line'>  <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">source</span>  <span class="c1">//需要按要求输入用户信息</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>预览区域<code>代码高亮</code></li>
+<li>所有选项自动记忆</li>
+</ul>
+
+
+<h2>参考</h2>
+
+<ul>
+<li>[octopress setup][http://octopress.org/docs/setup/)</li>
+</ul>
+
+
+<h2>关于作者</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">ihubo</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">nickName</span>  <span class="o">:</span> <span class="s2">&quot;CaoKun&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">site</span> <span class="o">:</span> <span class="s2">&quot;http://caokun.me&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hive Configuration Explanations]]></title>

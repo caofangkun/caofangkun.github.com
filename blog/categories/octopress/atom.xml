@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://caokun.me/"/>
+  <updated>2012-12-26T21:04:16+08:00</updated>
+  <id>http://caokun.me/</id>
+  <author>
+    <name><![CDATA[CaoKun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用GitHub和OctoPress搭建个人blog]]></title>
+    <link href="http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress/"/>
+    <updated>2012-12-26T20:33:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress</id>
+    <content type="html"><![CDATA[<h2>使用GitHub和OctoPress搭建个人blog</h2>
+
+<h2>安装GitHub</h2>
+
+<h2>创建github工程并配置免密码服务</h2>
+
+<ul>
+<li>建github工程</li>
+<li>配置免密码服务</li>
+</ul>
+
+
+<h2>安装Ruby</h2>
+
+<ul>
+<li>安装Ruby 1.9.3
+<code>javascript
+sudo apt-get install ruby1.9.3
+sudo aptitude install ruby1.9.1-dev
+</code></li>
+<li>安装依赖
+<code>javascript
+gem install bundler
+rbenv rehash    
+bundle install
+</code>
+
+<h2>安装Octopress</h2></li>
+<li>安装默认的Octopress主题
+<code>javascript
+rake install
+</code></li>
+<li>生产部署文件
+<code>javascript
+rake setup_github_pages
+</code></li>
+<li><p>修改CNAME文件
+<code>javascript
+~/myworkspace/octopress/source$ cat CNAME
+caokun.me
+</code></p></li>
+<li><p>编译并部署
+<code>javascript
+rake generate
+rake deploy
+</code>
+如上两个命令和如下命令等价的：
+<code>javascript
+rake gen_deploy
+</code></p></li>
+<li>提交代码到Github
+<code>javascript
+git add .
+git commit -m 'your message'
+git push origin source  //需要按要求输入用户信息
+</code></li>
+<li>预览区域<code>代码高亮</code></li>
+<li>所有选项自动记忆</li>
+</ul>
+
+
+<h2>参考</h2>
+
+<ul>
+<li>[octopress setup][http://octopress.org/docs/setup/)</li>
+</ul>
+
+
+<h2>关于作者</h2>
+
+<p>```javascript
+  var ihubo = {</p>
+
+<pre><code>nickName  : "CaoKun",
+site : "http://caokun.me"
+</code></pre>
+
+<p>  }
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
