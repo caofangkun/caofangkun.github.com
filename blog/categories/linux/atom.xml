@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[CaoKun's Blog]]></title>
-  <link href="http://caokun.me/atom.xml" rel="self"/>
+  <title><![CDATA[Category: linux | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
   <updated>2012-12-26T13:33:06+08:00</updated>
   <id>http://caokun.me/</id>
@@ -31,27 +31,6 @@
 <p>当然也可以： cp rsa_d.pub  authorized_keys</p>
 
 <p>5 chmod 644 authorized_keys //这一步很重要</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[hello world]]></title>
-    <link href="http://caokun.me/blog/2012/12/25/hello-world/"/>
-    <updated>2012-12-25T20:20:00+08:00</updated>
-    <id>http://caokun.me/blog/2012/12/25/hello-world</id>
-    <content type="html"><![CDATA[<h1>tilte1</h1>
-
-<p>MyTest</p>
-
-<p>MyTest</p>
-
-<h1>title2</h1>
-
-<p>MyTest</p>
-
-<p>Mytest</p>
-
-<h1>title3</h1>
 ]]></content>
   </entry>
   
