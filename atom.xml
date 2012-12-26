@@ -4,7 +4,7 @@
   <title><![CDATA[CaoKun's Blog]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-26T21:11:30+08:00</updated>
+  <updated>2012-12-26T21:12:38+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -18,9 +18,7 @@
     <link href="http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress/"/>
     <updated>2012-12-26T20:33:00+08:00</updated>
     <id>http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress</id>
-    <content type="html"><![CDATA[<h2>使用GitHub和OctoPress搭建个人blog</h2>
-
-<h2>安装GitHub</h2>
+    <content type="html"><![CDATA[<h2>安装GitHub</h2>
 
 <h2>创建github工程并配置免密码服务</h2>
 
