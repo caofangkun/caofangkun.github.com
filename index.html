@@ -328,19 +328,22 @@
   </header>
 
 
-  <div class="entry-content"><p>1 mkdir .ssh</p>
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">mkdir</span> <span class="p">.</span><span class="nx">ssh</span>
+</span><span class='line'><span class="nx">cd</span> <span class="p">.</span><span class="nx">ssh</span>
+</span><span class='line'><span class="nx">sudo</span> <span class="nx">chmod</span> <span class="mi">700</span> <span class="p">.</span> <span class="c1">//这一步很重要   </span>
+</span><span class='line'><span class="nx">ssh</span><span class="o">-</span><span class="nx">keygen</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rsa</span>
+</span><span class='line'><span class="nx">cat</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span> <span class="o">&gt;&gt;</span> <span class="nx">authorized_keys</span>
+</span><span class='line'>  <span class="err">当然也可以：</span> <span class="nx">cp</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span>  <span class="nx">authorized_keys</span>
+</span><span class='line'><span class="nx">chmod</span> <span class="mi">644</span> <span class="nx">authorized_keys</span> <span class="c1">//这一步很重要  </span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>2 cd .ssh</p>
-
-<p>sudo chmod 700 . //这一步很重要</p>
-
-<p>3 ssh-keygen -t rsa</p>
-
-<p>4 cat rsa_d.pub >> authorized_keys</p>
-
-<p>当然也可以： cp rsa_d.pub  authorized_keys</p>
-
-<p>5 chmod 644 authorized_keys //这一步很重要</p>
 </div>
   
   

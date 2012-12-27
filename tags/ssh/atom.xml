@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: test | CaoKun's Blog]]></title>
-  <link href="http://caokun.me/tags/test/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: ssh | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/tags/ssh/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-26T21:12:38+08:00</updated>
+  <updated>2012-12-27T11:11:25+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -18,19 +18,15 @@
     <link href="http://caokun.me/blog/2012/12/26/ssh-without-password/"/>
     <updated>2012-12-26T13:09:00+08:00</updated>
     <id>http://caokun.me/blog/2012/12/26/ssh-without-password</id>
-    <content type="html"><![CDATA[<p>1 mkdir .ssh</p>
-
-<p>2 cd .ssh</p>
-
-<p>sudo chmod 700 . //这一步很重要</p>
-
-<p>3 ssh-keygen -t rsa</p>
-
-<p>4 cat rsa_d.pub >> authorized_keys</p>
-
-<p>当然也可以： cp rsa_d.pub  authorized_keys</p>
-
-<p>5 chmod 644 authorized_keys //这一步很重要</p>
+    <content type="html"><![CDATA[<p><code>javascript
+mkdir .ssh   
+cd .ssh   
+sudo chmod 700 . //这一步很重要   
+ssh-keygen -t rsa   
+cat rsa_d.pub &gt;&gt; authorized_keys   
+  当然也可以： cp rsa_d.pub  authorized_keys    
+chmod 644 authorized_keys //这一步很重要  
+</code></p>
 ]]></content>
   </entry>
   
