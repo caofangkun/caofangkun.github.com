@@ -4,7 +4,7 @@
   <title><![CDATA[CaoKun's Blog]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-27T11:41:46+08:00</updated>
+  <updated>2012-12-27T19:39:26+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -152,7 +152,8 @@
 <h2>参考</h2>
 
 <ul>
-<li>[octopress setup][http://octopress.org/docs/setup/)</li>
+<li><a href="http://octopress.org/docs/setup/">octopress setup</a></li>
+<li><a href="http://sourceforge.net/adobe/tlf/wiki/markdown_syntax/">markdown语法说明</a></li>
 </ul>
 
 
@@ -172,11 +173,24 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Hive Configuration Explanations]]></title>
+    <title type="html"><![CDATA[Hive配置文件说明]]></title>
     <link href="http://caokun.me/blog/2012/12/26/hive-configuration-explanations/"/>
     <updated>2012-12-26T13:56:00+08:00</updated>
     <id>http://caokun.me/blog/2012/12/26/hive-configuration-explanations</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h1>相关Hadoop配置</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">变量名：</span> <span class="nx">mapred</span><span class="p">.</span><span class="nx">reduce</span><span class="p">.</span><span class="nx">tasks</span>
+</span><span class='line'><span class="err">描述：</span>   <span class="nx">Job</span><span class="err">运行时启动多少个</span><span class="nx">Reduce</span>
+</span><span class='line'><span class="err">默认值：</span> <span class="err">默认在</span><span class="nx">$HADOOP_CONF_DIR</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="err">里面已经配置好，</span>
+</span><span class='line'>             <span class="err">用户在运行</span><span class="nx">HiveSQL</span><span class="err">前运行</span><span class="nx">set</span> <span class="nx">mapred</span><span class="p">.</span><span class="nx">reduce</span><span class="p">.</span><span class="nx">tasks</span><span class="o">=</span><span class="mi">50</span><span class="p">;</span><span class="err">来修改</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>相关Hive配置</h1>
 ]]></content>
   </entry>
   

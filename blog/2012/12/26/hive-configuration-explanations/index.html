@@ -5,13 +5,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hive Configuration Explanations - CaoKun's Blog</title>
+  <title>Hive配置文件说明 - CaoKun's Blog</title>
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="
-">
-  
+  <meta name="description" content="相关Hadoop配置 1
+2
+3
+4
+变量名： mapred.reduce.tasks
+描述： Job运行时启动多少个Reduce
+默认值： 默认在$HADOOP_CONF_DIR/hadoop-site.xml里面已经配置好， 用户在运行HiveSQL前运行set mapred.reduce. &hellip;">
+  <meta name="keywords" content="hive,configuration">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -80,7 +85,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hive Configuration Explanations</h1>
+      <h1 class="entry-title">Hive配置文件说明</h1>
     
     
       <p class="meta">
@@ -105,7 +110,20 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><h1>相关Hadoop配置</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">变量名：</span> <span class="nx">mapred</span><span class="p">.</span><span class="nx">reduce</span><span class="p">.</span><span class="nx">tasks</span>
+</span><span class='line'><span class="err">描述：</span>   <span class="nx">Job</span><span class="err">运行时启动多少个</span><span class="nx">Reduce</span>
+</span><span class='line'><span class="err">默认值：</span> <span class="err">默认在</span><span class="nx">$HADOOP_CONF_DIR</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="err">里面已经配置好，</span>
+</span><span class='line'>             <span class="err">用户在运行</span><span class="nx">HiveSQL</span><span class="err">前运行</span><span class="nx">set</span> <span class="nx">mapred</span><span class="p">.</span><span class="nx">reduce</span><span class="p">.</span><span class="nx">tasks</span><span class="o">=</span><span class="mi">50</span><span class="p">;</span><span class="err">来修改</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>相关Hive配置</h1>
 </div>
 
 
@@ -131,8 +149,20 @@
 <time datetime="2012-12-26T13:56:00+08:00" pubdate data-updated="true">Dec 26<span>th</span>, 2012</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hive/'>hive</a>
+  
+</span>
+
 
       
+
+<span class="tags">
+  
+    <a class='tag' href='//hive/'>hive</a>
+  
+</span>
 
 
     </p>
@@ -169,7 +199,7 @@
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/linux' style='font-size: 160.0%'>linux(1)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hive' style='font-size: 160.0%'>hive(1)</a> <a href='/blog/categories/linux' style='font-size: 160.0%'>linux(1)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
@@ -180,7 +210,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2012/12/26/hive-configuration-explanations/">Hive Configuration Explanations</a>
+        <a href="/blog/2012/12/26/hive-configuration-explanations/">Hive配置文件说明</a>
       </li>
     
       <li class="post">

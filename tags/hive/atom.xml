@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: hive | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/tags/hive/atom.xml" rel="self"/>
+  <link href="http://caokun.me/"/>
+  <updated>2012-12-27T19:39:26+08:00</updated>
+  <id>http://caokun.me/</id>
+  <author>
+    <name><![CDATA[CaoKun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hive配置文件说明]]></title>
+    <link href="http://caokun.me/blog/2012/12/26/hive-configuration-explanations/"/>
+    <updated>2012-12-26T13:56:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/26/hive-configuration-explanations</id>
+    <content type="html"><![CDATA[<h1>相关Hadoop配置</h1>
+
+<p>```javascript
+变量名： mapred.reduce.tasks      <br/>
+描述：   Job运行时启动多少个Reduce
+默认值： 默认在$HADOOP_CONF_DIR/hadoop-site.xml里面已经配置好，</p>
+
+<pre><code>         用户在运行HiveSQL前运行set mapred.reduce.tasks=50;来修改
+</code></pre>
+
+<p>```</p>
+
+<h1>相关Hive配置</h1>
+]]></content>
+  </entry>
+  
+</feed>
