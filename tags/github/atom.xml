@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: github | CaoKun's Blog]]></title>
   <link href="http://caokun.me/tags/github/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-27T11:11:25+08:00</updated>
+  <updated>2012-12-27T11:41:46+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -20,17 +20,16 @@
     <id>http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress</id>
     <content type="html"><![CDATA[<h2>安装GitHub</h2>
 
+<p>自己Google吧</p>
+
 <h2>创建github工程并配置免密码服务</h2>
 
 <ul>
-<li>建github工程</li>
-<li>配置免密码服务</li>
-</ul>
+<li>建github工程
+工程名一般为username.github.com</li>
+<li><a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
 
-
-<h2>安装Ruby</h2>
-
-<ul>
+<h2>安装Ruby</h2></li>
 <li>安装Ruby 1.9.3
 <code>javascript
 sudo apt-get install ruby1.9.3
@@ -73,7 +72,13 @@ rake deploy
 如上两个命令和如下命令等价的：
 <code>javascript
 rake gen_deploy
-</code></p></li>
+</code>
+如果需要本地调试的话可以执行如下命令:
+<code>javascript
+rake generate
+rake preview
+</code>
+然后打开浏览器访问localhost:4000就可以看到修改后的样子了</p></li>
 <li>提交代码到Github
 <code>javascript
 git add .

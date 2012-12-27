@@ -9,9 +9,11 @@
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="安装GitHub 创建github工程并配置免密码服务 建github工程
-配置免密码服务 安装Ruby 安装Ruby 1.9.3 1
-2 sudo apt-get install ruby1.9.3 sudo aptitude install ruby1.9.1-dev 可以检查下系统的 / &hellip;">
+  <meta name="description" content="安装GitHub 自己Google吧 创建github工程并配置免密码服务 建github工程
+工程名一般为username.github.com
+配置免密码服务 安装Ruby
+安装Ruby 1.9.3 1
+2 sudo apt-get install ruby1.9.3 sudo &hellip;">
   <meta name="keywords" content="github,octopress,blog">
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,17 +110,16 @@
 
 <div class="entry-content"><h2>安装GitHub</h2>
 
+<p>自己Google吧</p>
+
 <h2>创建github工程并配置免密码服务</h2>
 
 <ul>
-<li>建github工程</li>
-<li>配置免密码服务</li>
-</ul>
+<li>建github工程
+工程名一般为username.github.com</li>
+<li><a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
 
-
-<h2>安装Ruby</h2>
-
-<ul>
+<h2>安装Ruby</h2></li>
 <li>安装Ruby 1.9.3</li>
 </ul>
 
@@ -211,10 +212,17 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>提交代码到Github</li>
-</ul>
+<p>如果需要本地调试的话可以执行如下命令:</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">generate</span>
+</span><span class='line'><span class="nx">rake</span> <span class="nx">preview</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后打开浏览器访问localhost:4000就可以看到修改后的样子了
+* 提交代码到Github</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
