@@ -4,7 +4,7 @@
   <title><![CDATA[Category: hive | CaoKun's Blog]]></title>
   <link href="http://caokun.me/blog/categories/hive/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-27T20:13:33+08:00</updated>
+  <updated>2012-12-28T11:38:52+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hive install]]></title>
+    <link href="http://caokun.me/blog/2012/12/28/hive-install/"/>
+    <updated>2012-12-28T11:31:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/28/hive-install</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hive中的touch]]></title>

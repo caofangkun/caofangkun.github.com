@@ -4,7 +4,7 @@
   <title><![CDATA[CaoKun's Blog]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-27T20:13:33+08:00</updated>
+  <updated>2012-12-28T11:38:52+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu install mysql]]></title>
+    <link href="http://caokun.me/blog/2012/12/28/ubuntu-install-mysql/"/>
+    <updated>2012-12-28T11:32:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/28/ubuntu-install-mysql</id>
+    <content type="html"><![CDATA[<h3>Install MySQL</h3>
+
+<pre><code>    sudo apt-get install mysql-server 
+    sudo apt-get install mysql 
+    sudo apt-get install mysql-devel
+    sudo apt-get install mysql-client
+</code></pre>
+
+<h3>Start MySQL Server</h3>
+
+<pre><code>    service mysql start
+    chkconfig --levels 235 mysql on
+</code></pre>
+
+<h3>Config root user password</h3>
+
+<pre><code>    mysql&gt; use mysql;
+    mysql&gt; update user set password=PASSWORD("root") where User='root';
+    mysql&gt; flush privileges;
+    mysql&gt; quit
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hive install]]></title>
+    <link href="http://caokun.me/blog/2012/12/28/hive-install/"/>
+    <updated>2012-12-28T11:31:00+08:00</updated>
+    <id>http://caokun.me/blog/2012/12/28/hive-install</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hive中的touch]]></title>

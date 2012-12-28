@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: linux | CaoKun's Blog]]></title>
-  <link href="http://caokun.me/blog/categories/linux/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: mysql | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/tags/mysql/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
   <updated>2012-12-28T11:38:52+08:00</updated>
   <id>http://caokun.me/</id>
@@ -39,23 +39,6 @@
     mysql&gt; flush privileges;
     mysql&gt; quit
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ssh免密码登录]]></title>
-    <link href="http://caokun.me/blog/2012/12/26/ssh-without-password/"/>
-    <updated>2012-12-26T13:09:00+08:00</updated>
-    <id>http://caokun.me/blog/2012/12/26/ssh-without-password</id>
-    <content type="html"><![CDATA[<p><code>javascript
-mkdir .ssh   
-cd .ssh   
-sudo chmod 700 . //这一步很重要   
-ssh-keygen -t rsa   
-cat rsa_d.pub &gt;&gt; authorized_keys   
-  当然也可以： cp rsa_d.pub  authorized_keys    
-chmod 644 authorized_keys //这一步很重要  
-</code></p>
 ]]></content>
   </entry>
   

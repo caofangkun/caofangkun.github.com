@@ -9,9 +9,7 @@
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="wiki Alter Table Touch jira HIVE-1300 作用 读取元数据信息，然后再把元数据信息重新写入到元数据库中。 解决的问题场景一：
-用户写了个hook来记录所有表和分区被改动的操作日志，同时有个外部脚本直接去修改了HDFS中的文件，
-因为操作是在hive之外完成的， &hellip;">
+  <meta name="description" content="Install MySQL sudo apt-get install mysql-server sudo apt-get install mysql sudo apt-get install mysql-devel sudo apt-get install mysql-client Start &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,102 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/28/ubuntu-install-mysql/">Ubuntu Install Mysql</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T11:32:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/12/28/ubuntu-install-mysql/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Install MySQL</h3>
+
+<pre><code>    sudo apt-get install mysql-server 
+    sudo apt-get install mysql 
+    sudo apt-get install mysql-devel
+    sudo apt-get install mysql-client
+</code></pre>
+
+<h3>Start MySQL Server</h3>
+
+<pre><code>    service mysql start
+    chkconfig --levels 235 mysql on
+</code></pre>
+
+<h3>Config root user password</h3>
+
+<pre><code>    mysql&gt; use mysql;
+    mysql&gt; update user set password=PASSWORD("root") where User='root';
+    mysql&gt; flush privileges;
+    mysql&gt; quit
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/28/hive-install/">Hive Install</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T11:31:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/12/28/hive-install/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1040,11 +1134,19 @@
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/hive' style='font-size: 160.0%'>hive(2)</a> <a href='/blog/categories/linux' style='font-size: 130.0%'>linux(1)</a> <a href='/blog/categories/octopress' style='font-size: 130.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hive' style='font-size: 160.0%'>hive(3)</a> <a href='/blog/categories/linux' style='font-size: 140.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 120.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/28/ubuntu-install-mysql/">ubuntu install mysql</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/28/hive-install/">hive install</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a>
@@ -1056,10 +1158,6 @@
     
       <li class="post">
         <a href="/blog/2012/12/26/hive-configuration-explanations/">Hive配置文件说明</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/26/ssh-without-password/">ssh免密码登录</a>
       </li>
     
   </ul>
