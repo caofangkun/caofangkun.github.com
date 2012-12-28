@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: hive - CaoKun's Blog</title>
+  <title>hive hadoop define proper reduce num - CaoKun's Blog</title>
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="Tag: hive">
+  <meta name="description" content="Hadoop中计算hash值的算法 package org.apache.hadoop.mapred.lib; import org.apache.hadoop.mapred.Partitioner; import org.apache.hadoop.mapred.JobConf; /** &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caokun.metags/hive/">
+  <link rel="canonical" href="http://caokun.me/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,82 +75,129 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Hive</h1>
+    
+      <h1 class="entry-title">Hive Hadoop Define Proper Reduce Num</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T17:24:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><h3>Hadoop中计算hash值的算法</h3>
 
-  
-  <h2>2012</h2>
+<pre><code>    package org.apache.hadoop.mapred.lib;
+    import org.apache.hadoop.mapred.Partitioner;
+    import org.apache.hadoop.mapred.JobConf;
 
-<article>
-  
+    /** Partition keys by their {@link Object#hashCode()}. 
+     */
+    public class HashPartitioner&lt;K2, V2&gt; implements Partitioner&lt;K2, V2&gt; {
 
-<h1><a href="/blog/2012/12/28/hive-install/">hive安装和配置</a></h1>
-<time datetime="2012-12-28T11:31:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>28</span> <span class='year'>2012</span></time>
+      public void configure(JobConf job) {}
+      /** Use {@link Object#hashCode()} to partition. */
+      public int getPartition(K2 key, V2 value,
+                              int numReduceTasks) {
+        return (key.hashCode() &amp; Integer.MAX_VALUE) % numReduceTasks;
+      }
+    }
+</code></pre>
 
-<footer>
+<h3>Hive中通过HiveQL来查看键是否分布均匀</h3>
 
-  <span class="categories">posted in <a class='category' href='/blog/categories/hive/'>hive</a></span>
-
-
-  <span class="tags">tagged with <a class='tag' href='//hive/'>hive</a></span>
-
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-
-<h1><a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a></h1>
-<time datetime="2012-12-27T20:07:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2012</span></time>
-
-<footer>
-
-  <span class="categories">posted in <a class='category' href='/blog/categories/hive/'>hive</a></span>
-
-
-  <span class="tags">tagged with <a class='tag' href='//hive/'>hive</a>, <a class='tag' href='//touch/'>touch</a></span>
-
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-
-<h1><a href="/blog/2012/12/26/hive-configuration-explanations/">Hive配置文件说明</a></h1>
-<time datetime="2012-12-26T13:56:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>26</span> <span class='year'>2012</span></time>
-
-<footer>
-
-  <span class="categories">posted in <a class='category' href='/blog/categories/hive/'>hive</a></span>
-
-
-  <span class="tags">tagged with <a class='tag' href='//hive/'>hive</a></span>
-
-</footer>
-
-
-</article>
-
+<pre><code>    select  ( hash(card_no) &amp; 2147483647 ) % 8 as hash_code ,count(1) as cnt
+    from    dwb_cbz_cs_user_grade_dd
+    where   dt = '20121007'
+    group by ( hash(card_no) &amp; 2147483647 ) % 8
+    order by cnt  desc
+    limit 10;
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">CaoKun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T17:24:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>, <a class='category' href='/blog/categories/hive/'>hive</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//hadoop-hive/'>hadoop,hive</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/28/ubuntu-install-mysql/" title="Previous Post: ubuntu install mysql">&laquo; ubuntu install mysql</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -216,7 +263,10 @@
       var disqus_shortname = 'caokunme';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caokun.me/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/';
+        var disqus_url = 'http://caokun.me/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
