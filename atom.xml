@@ -4,7 +4,7 @@
   <title><![CDATA[CaoKun's Blog]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2012-12-28T17:38:55+08:00</updated>
+  <updated>2013-01-04T11:18:03+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hadoop task unassigned]]></title>
+    <link href="http://caokun.me/blog/2013/01/04/hadoop-task-unassigned/"/>
+    <updated>2013-01-04T11:13:00+08:00</updated>
+    <id>http://caokun.me/blog/2013/01/04/hadoop-task-unassigned</id>
+    <content type="html"><![CDATA[<ul>
+<li><p>现象是map task 或 reduce task 一直处于UNASSIGNED状态</p></li>
+<li><p>查看taskTracker 的jstack信息</p>
+
+<pre><code>   $JAVA_HOME/bin/jps
+   9056 Child
+   28402 Jps 
+   13347 DataNode
+   13560 TaskTracker
+
+   $JAVA_HOME/bin/jstack 13560 &gt; /tmp/js_tt.log 
+</code></pre></li>
+<li><p>jstack日志中的对应信息</p>
+
+<pre><code>   "LaunchTaskWorker for attempt_201211271955_2504854_m_000001_0" daemon prio=10 tid=0x00007fe8b8854800 nid=0x336a waiting for monitor entry [0x000000004bc66000]
+      java.lang.Thread.State: BLOCKED (on object monitor)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:293)
+      - waiting to lock &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+      at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:832)
+      at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2028)
+      at org.apache.hadoop.mapred.TaskTracker$LaunchTaskWorker.run(TaskTracker.java:1995)
+
+   "TaskRunner for attempt_201211271955_2504482_m_000002_0" daemon prio=10 tid=0x00007fe8af69d800 nid=0x2b86 runnable [0x000000004c16b000]
+      java.lang.Thread.State: RUNNABLE
+      at java.io.UnixFileSystem.createDirectory(Native Method)
+      at java.io.File.mkdir(File.java:1157)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:56)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.checkDir(DiskChecker.java:72)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.createPath(LocalDirAllocator.java:257)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:335)
+      - locked &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:251)
+      - locked &lt;0x00000000a0154ab8&gt; (a java.util.TreeMap)
+      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:180)
+      at org.apache.hadoop.mapred.TaskRunner.run(TaskRunner.java:167)
+</code></pre></li>
+<li><p>ps uxf，看子进程
+hadoop 11031 0.0 0.0 59000 708 ? D Jan03 0:00 _du -sk /disk2/data</p></li>
+<li><p>问题原因
+disk2坏盘</p></li>
+<li><p>临时解决办法</p>
+
+<pre><code>   $HADOOP_HOME/bin/hadoop-deamon.sh stop tasktracker 
+   如果这样终止不掉
+   那么
+   $kill -9 13560
+</code></pre></li>
+<li>后期解决方案
+当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀]]></title>
@@ -46,6 +115,8 @@
     order by cnt  desc
     limit 10;
 </code></pre>
+
+<h3>如何确定合适的reduce task个数</h3>
 ]]></content>
   </entry>
   

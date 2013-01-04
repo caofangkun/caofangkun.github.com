@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hive中的touch - CaoKun's Blog</title>
+  <title>hadoop task unassigned - CaoKun's Blog</title>
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="wiki Alter Table Touch jira HIVE-1300 作用 读取元数据信息，然后再把元数据信息重新写入到元数据库中。 解决的问题场景一：
-用户写了个hook来记录所有表和分区被改动的操作日志，同时有个外部脚本直接去修改了HDFS中的文件，
-因为操作是在hive之外完成的， &hellip;">
-  <meta name="keywords" content="hive,touch">
+  <meta name="description" content="现象是map task 或 reduce task 一直处于UNASSIGNED状态
+查看taskTracker 的jstack信息 $JAVA_HOME/bin/jps 9056 Child 28402 Jps 13347 DataNode 13560 TaskTracker $ &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caokun.me/blog/2012/12/27/hive-touch/">
+  <link rel="canonical" href="http://caokun.me/blog/2013/01/04/hadoop-task-unassigned/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hive中的touch</h1>
+      <h1 class="entry-title">Hadoop Task Unassigned</h1>
     
     
       <p class="meta">
@@ -97,7 +96,7 @@
   
 
 
-<time datetime="2012-12-27T20:07:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+<time datetime="2013-01-04T11:13:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,34 +105,67 @@
   </header>
 
 
-<div class="entry-content"><h3>wiki</h3>
+<div class="entry-content"><ul>
+<li><p>现象是map task 或 reduce task 一直处于UNASSIGNED状态</p></li>
+<li><p>查看taskTracker 的jstack信息</p>
 
-<ul>
-<li><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTableTouch">Alter Table Touch</a></li>
+<pre><code>   $JAVA_HOME/bin/jps
+   9056 Child
+   28402 Jps 
+   13347 DataNode
+   13560 TaskTracker
+
+   $JAVA_HOME/bin/jstack 13560 &gt; /tmp/js_tt.log 
+</code></pre></li>
+<li><p>jstack日志中的对应信息</p>
+
+<pre><code>   "LaunchTaskWorker for attempt_201211271955_2504854_m_000001_0" daemon prio=10 tid=0x00007fe8b8854800 nid=0x336a waiting for monitor entry [0x000000004bc66000]
+      java.lang.Thread.State: BLOCKED (on object monitor)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:293)
+      - waiting to lock &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+      at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:832)
+      at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2028)
+      at org.apache.hadoop.mapred.TaskTracker$LaunchTaskWorker.run(TaskTracker.java:1995)
+
+   "TaskRunner for attempt_201211271955_2504482_m_000002_0" daemon prio=10 tid=0x00007fe8af69d800 nid=0x2b86 runnable [0x000000004c16b000]
+      java.lang.Thread.State: RUNNABLE
+      at java.io.UnixFileSystem.createDirectory(Native Method)
+      at java.io.File.mkdir(File.java:1157)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:56)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+      at org.apache.hadoop.util.DiskChecker.checkDir(DiskChecker.java:72)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.createPath(LocalDirAllocator.java:257)
+      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:335)
+      - locked &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:251)
+      - locked &lt;0x00000000a0154ab8&gt; (a java.util.TreeMap)
+      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:180)
+      at org.apache.hadoop.mapred.TaskRunner.run(TaskRunner.java:167)
+</code></pre></li>
+<li><p>ps uxf，看子进程
+hadoop 11031 0.0 0.0 59000 708 ? D Jan03 0:00 _du -sk /disk2/data</p></li>
+<li><p>问题原因
+disk2坏盘</p></li>
+<li><p>临时解决办法</p>
+
+<pre><code>   $HADOOP_HOME/bin/hadoop-deamon.sh stop tasktracker 
+   如果这样终止不掉
+   那么
+   $kill -9 13560
+</code></pre></li>
+<li>后期解决方案
+当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</li>
 </ul>
 
-
-<h3>jira</h3>
-
-<ul>
-<li><a href="https://issues.apache.org/jira/browse/HIVE-1300">HIVE-1300</a></li>
-</ul>
-
-
-<h3>作用</h3>
-
-<p>读取元数据信息，然后再把元数据信息重新写入到元数据库中。</p>
-
-<p>解决的问题场景一：
-用户写了个hook来记录所有表和分区被改动的操作日志，同时有个外部脚本直接去修改了HDFS中的文件，
-因为操作是在hive之外完成的，那么这个修改过程也就不会记录到操作日志中。这时这个外部脚本是可以通过调用touch命令来标记出有改动。</p>
-
-<h3>使用方式</h3>
-
-<pre><code>    ALTER TABLE tstsrc TOUCH;
-    ALTER TABLE tstsrcpart TOUCH;
-    ALTER TABLE tstsrcpart TOUCH PARTITION (ds='2008-04-08', hr='12');
-</code></pre>
 </div>
 
 
@@ -156,12 +188,12 @@
   
 
 
-<time datetime="2012-12-27T20:07:00+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+<time datetime="2013-01-04T11:13:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/hive/'>hive</a>
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>
   
 </span>
 
@@ -170,7 +202,7 @@
 
 <span class="tags">
   
-    <a class='tag' href='//hive/'>hive</a>, <a class='tag' href='//touch/'>touch</a>
+    <a class='tag' href='//hadoop-task-unassigned/'>hadoop,task,unassigned</a>
   
 </span>
 
@@ -188,10 +220,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/26/build-blog-using-github-and-octopress/" title="Previous Post: 使用GitHub和OctoPress搭建个人blog">&laquo; 使用GitHub和OctoPress搭建个人blog</a>
+        <a class="basic-alignment left" href="/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/" title="Previous Post: Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀">&laquo; Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/12/28/hive-install/" title="Next Post: hive安装和配置">hive安装和配置 &raquo;</a>
       
     </p>
   </footer>
@@ -268,8 +298,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://caokun.me/blog/2012/12/27/hive-touch/';
-        var disqus_url = 'http://caokun.me/blog/2012/12/27/hive-touch/';
+        var disqus_identifier = 'http://caokun.me/blog/2013/01/04/hadoop-task-unassigned/';
+        var disqus_url = 'http://caokun.me/blog/2013/01/04/hadoop-task-unassigned/';
         var disqus_script = 'embed.js';
       
     (function () {

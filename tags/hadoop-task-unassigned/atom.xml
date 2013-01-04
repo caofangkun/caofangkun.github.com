@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: hadoop | CaoKun's Blog]]></title>
-  <link href="http://caokun.me/blog/categories/hadoop/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: hadoop,task,unassigned | CaoKun's Blog]]></title>
+  <link href="http://caokun.me/tags/hadoop-task-unassigned/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
   <updated>2013-01-04T11:18:03+08:00</updated>
   <id>http://caokun.me/</id>
@@ -79,44 +79,6 @@ disk2坏盘</p></li>
 当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀]]></title>
-    <link href="http://caokun.me/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/"/>
-    <updated>2012-12-28T17:24:00+08:00</updated>
-    <id>http://caokun.me/blog/2012/12/28/hive-hadoop-define-proper-reduce-num</id>
-    <content type="html"><![CDATA[<h3>Hadoop中计算hash值的算法</h3>
-
-<pre><code>    package org.apache.hadoop.mapred.lib;
-    import org.apache.hadoop.mapred.Partitioner;
-    import org.apache.hadoop.mapred.JobConf;
-
-    /** Partition keys by their {@link Object#hashCode()}. 
-     */
-    public class HashPartitioner&lt;K2, V2&gt; implements Partitioner&lt;K2, V2&gt; {
-
-      public void configure(JobConf job) {}
-      /** Use {@link Object#hashCode()} to partition. */
-      public int getPartition(K2 key, V2 value,
-                              int numReduceTasks) {
-        return (key.hashCode() &amp; Integer.MAX_VALUE) % numReduceTasks;
-      }
-    }
-</code></pre>
-
-<h3>Hive中通过HiveQL来查看键是否分布均匀</h3>
-
-<pre><code>    select  ( hash(card_no) &amp; 2147483647 ) % 8 as hash_code ,count(1) as cnt
-    from    dwb_cbz_cs_user_grade_dd
-    where   dt = '20121007'
-    group by ( hash(card_no) &amp; 2147483647 ) % 8
-    order by cnt  desc
-    limit 10;
-</code></pre>
-
-<h3>如何确定合适的reduce task个数</h3>
 ]]></content>
   </entry>
   
