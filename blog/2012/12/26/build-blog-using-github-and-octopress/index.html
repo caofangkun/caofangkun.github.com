@@ -9,11 +9,15 @@
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="安装GitHub 自己Google吧 创建github工程并配置免密码服务 建github工程
+  <meta name="description" content="安装GitHub
+自己Google吧
+##创建github工程并配置免密码服务
+* 建github工程
 工程名一般为username.github.com
-配置免密码服务 安装Ruby
-安装Ruby 1.9.3 1
-2 sudo apt-get install ruby1.9.3 sudo &hellip;">
+* 配置免密码服务
+##安装Ruby
+* 安装Ruby 1.9.3
+&lt;div class=&#8217;bogus-wrapper&# &hellip;">
   <meta name="keywords" content="github,octopress,blog">
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,157 +110,101 @@
   </header>
 
 
-<div class="entry-content"><h2>安装GitHub</h2>
-
-<p>自己Google吧</p>
-
-<h2>创建github工程并配置免密码服务</h2>
-
-<ul>
-<li>建github工程
-工程名一般为username.github.com</li>
-<li><a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
-
-<h2>安装Ruby</h2></li>
-<li>安装Ruby 1.9.3</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.3</span>
-</span><span class='line'>  <span class="nx">sudo</span> <span class="nx">aptitude</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.1</span><span class="o">-</span><span class="nx">dev</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以检查下系统的 /usr/bin下安装有多少个版本的ruby
-并将默认的软链接指向到1.9.3版本</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">~</span><span class="err">#</span> <span class="nx">rm</span> <span class="o">-</span><span class="nx">rf</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby</span>
-</span><span class='line'><span class="o">~</span><span class="err">#</span> <span class="nx">ln</span> <span class="o">-</span><span class="nx">s</span>   <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.3</span>  <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby</span>
-</span><span class='line'><span class="o">~</span><span class="err">#</span> <span class="nx">ruby</span> <span class="o">-</span><span class="nx">v</span>
-</span><span class='line'><span class="nx">ruby</span> <span class="mf">1.9</span><span class="p">.</span><span class="mi">3</span><span class="nx">p0</span> <span class="p">(</span><span class="mi">2011</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">30</span> <span class="nx">revision</span> <span class="mi">33570</span><span class="p">)</span> <span class="p">[</span><span class="nx">i686</span><span class="o">-</span><span class="nx">linux</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>安装依赖</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">gem</span> <span class="nx">install</span> <span class="nx">bundler</span>
-</span><span class='line'>  <span class="nx">rbenv</span> <span class="nx">rehash</span>
-</span><span class='line'>  <span class="nx">bundle</span> <span class="nx">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>安装Octopress</h2>
+<div class="entry-content"><h2 id="github">安装GitHub</h2>
+<p>自己Google吧
+##创建github工程并配置免密码服务
+* 建github工程
+工程名一般为username.github.com
+* <a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
+##安装Ruby
+* 安装Ruby 1.9.3
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line">  <span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.3</span>
+</span><span class="line">  <span class="nx">sudo</span> <span class="nx">aptitude</span> <span class="nx">install</span> <span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.1</span><span class="o">-</span><span class="nx">dev</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+可以检查下系统的 /usr/bin下安装有多少个版本的ruby
+并将默认的软链接指向到1.9.3版本
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="o">~</span><span class="err">#</span> <span class="nx">rm</span> <span class="o">-</span><span class="nx">rf</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby</span>
+</span><span class="line"><span class="o">~</span><span class="err">#</span> <span class="nx">ln</span> <span class="o">-</span><span class="nx">s</span>   <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby1</span><span class="p">.</span><span class="mf">9.3</span>  <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">ruby</span>
+</span><span class="line"><span class="o">~</span><span class="err">#</span> <span class="nx">ruby</span> <span class="o">-</span><span class="nx">v</span>
+</span><span class="line"><span class="nx">ruby</span> <span class="mf">1.9</span><span class="p">.</span><span class="mi">3</span><span class="nx">p0</span> <span class="p">(</span><span class="mi">2011</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">30</span> <span class="nx">revision</span> <span class="mi">33570</span><span class="p">)</span> <span class="p">[</span><span class="nx">i686</span><span class="o">-</span><span class="nx">linux</span><span class="p">]</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+* 安装依赖
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line">  <span class="nx">gem</span> <span class="nx">install</span> <span class="nx">bundler</span>
+</span><span class="line">  <span class="nx">rbenv</span> <span class="nx">rehash</span>
+</span><span class="line">  <span class="nx">bundle</span> <span class="nx">install</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+##安装Octopress
+* 安装默认的Octopress主题
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line">  <span class="nx">rake</span> <span class="nx">install</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+* 生产部署文件
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="nx">rake</span> <span class="nx">setup_github_pages</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+* 修改CNAME文件
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="o">~</span><span class="err">/myworkspace/octopress/source$ cat CNAME </span>
+</span><span class="line"><span class="nx">caokun</span><span class="p">.</span><span class="nx">me</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <ul>
-<li>安装默认的Octopress主题</li>
+  <li>编译并部署
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span></figure></notextile></li>
 </ul>
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="nx">rake</span> <span class="nx">generate</span>
+</span><span class="line"><span class="nx">rake</span> <span class="nx">deploy</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;
+如上两个命令和如下命令等价的：
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="nx">rake</span> <span class="nx">gen_deploy</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+如果需要本地调试的话可以执行如下命令:
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line"><span class="nx">rake</span> <span class="nx">generate</span>
+</span><span class="line"><span class="nx">rake</span> <span class="nx">preview</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+然后打开浏览器访问localhost:4000就可以看到修改后的样子了
+* 提交代码到Github
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="javascript"><span class="line">  <span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span>
+</span><span class="line">  <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s1">&#39;your message&#39;</span>
+</span><span class="line">  <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">source</span>  <span class="c1">//需要按要求输入用户信息</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;
+* 预览区域<code>代码高亮</code>
+* 所有选项自动记忆</p>
 
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">rake</span> <span class="nx">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<h2 id="section">参考</h2>
 <ul>
-<li>生产部署文件</li>
+  <li><a href="http://octopress.org/docs/setup/">octopress setup</a> </li>
+  <li><a href="http://sourceforge.net/adobe/tlf/wiki/markdown_syntax/">markdown语法说明</a></li>
 </ul>
 
+<h2 id="section-1">关于作者</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">setup_github_pages</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>修改CNAME文件</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">~</span><span class="err">/myworkspace/octopress/source$ cat CNAME </span>
-</span><span class='line'><span class="nx">caokun</span><span class="p">.</span><span class="nx">me</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>编译并部署</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">generate</span>
-</span><span class='line'><span class="nx">rake</span> <span class="nx">deploy</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如上两个命令和如下命令等价的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">gen_deploy</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果需要本地调试的话可以执行如下命令:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">rake</span> <span class="nx">generate</span>
-</span><span class='line'><span class="nx">rake</span> <span class="nx">preview</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后打开浏览器访问localhost:4000就可以看到修改后的样子了
-* 提交代码到Github</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span>
-</span><span class='line'>  <span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s1">&#39;your message&#39;</span>
-</span><span class='line'>  <span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="nx">source</span>  <span class="c1">//需要按要求输入用户信息</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>预览区域<code>代码高亮</code></li>
-<li>所有选项自动记忆</li>
-</ul>
-
-
-<h2>参考</h2>
-
-<ul>
-<li><a href="http://octopress.org/docs/setup/">octopress setup</a></li>
-<li><a href="http://sourceforge.net/adobe/tlf/wiki/markdown_syntax/">markdown语法说明</a></li>
-</ul>
-
-
-<h2>关于作者</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">ihubo</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">nickName</span>  <span class="o">:</span> <span class="s2">&quot;CaoKun&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">site</span> <span class="o">:</span> <span class="s2">&quot;http://caokun.me&quot;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">  <span class="kd">var</span> <span class="nx">ihubo</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">nickName</span>  <span class="o">:</span> <span class="s2">&quot;CaoKun&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nx">site</span> <span class="o">:</span> <span class="s2">&quot;http://caokun.me&quot;</span>
+</span><span class="line">  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -332,11 +280,15 @@
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 130.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(4)</a> <a href='/blog/categories/linux' style='font-size: 130.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 115.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 124.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(5)</a> <a href='/blog/categories/linux' style='font-size: 124.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/04/hive-array-map-structs/">HIVE中map，array和structs使用</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/04/hadoop-task-unassigned/">map task 或 reduce task 一直处于UNASSIGNED状态</a>
@@ -352,10 +304,6 @@
     
       <li class="post">
         <a href="/blog/2012/12/28/hive-install/">hive安装和配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a>
       </li>
     
   </ul>

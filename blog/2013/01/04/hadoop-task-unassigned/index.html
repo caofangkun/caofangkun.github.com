@@ -9,8 +9,7 @@
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="现象是map task 或 reduce task 一直处于UNASSIGNED状态
-查看taskTracker 的jstack信息 $JAVA_HOME/bin/jps 9056 Child 28402 Jps 13347 DataNode 13560 TaskTracker $ &hellip;">
+  <meta name="description" content="现象是map task 或 reduce task 一直处于UNASSIGNED状态 查看taskTracker 的jstack信息 $JAVA_HOME/bin/jps 9056 Child 28402 Jps 13347 DataNode 13560 TaskTracker $ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,71 +103,80 @@
 
 
 <div class="entry-content"><ul>
-<li><p>现象是map task 或 reduce task 一直处于UNASSIGNED状态</p></li>
-<li><p>查看taskTracker 的jstack信息</p>
+  <li>
+    <p>现象是map task 或 reduce task 一直处于UNASSIGNED状态</p>
+  </li>
+  <li>
+    <p>查看taskTracker 的jstack信息
+       $JAVA_HOME/bin/jps
+       9056 Child
+       28402 Jps 
+       13347 DataNode
+       13560 TaskTracker</p>
 
-<pre><code>   $JAVA_HOME/bin/jps
-   9056 Child
-   28402 Jps 
-   13347 DataNode
-   13560 TaskTracker
+    <pre><code>   $JAVA_HOME/bin/jstack 13560 &gt; /tmp/js_tt.log 
+</code></pre>
+  </li>
+  <li>
+    <p>jstack日志中的对应信息      <br />
+       “LaunchTaskWorker for attempt<em>201211271955</em>2504854<em>m</em>000001_0” daemon prio=10 tid=0x00007fe8b8854800 nid=0x336a waiting for monitor entry [0x000000004bc66000]
+          java.lang.Thread.State: BLOCKED (on object monitor)
+       	at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:293)
+       	- waiting to lock &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+       	at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+       	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:832)
+       	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2028)
+       	at org.apache.hadoop.mapred.TaskTracker$LaunchTaskWorker.run(TaskTracker.java:1995)</p>
 
-   $JAVA_HOME/bin/jstack 13560 &gt; /tmp/js_tt.log 
-</code></pre></li>
-<li><p>jstack日志中的对应信息</p>
-
-<pre><code>   "LaunchTaskWorker for attempt_201211271955_2504854_m_000001_0" daemon prio=10 tid=0x00007fe8b8854800 nid=0x336a waiting for monitor entry [0x000000004bc66000]
-      java.lang.Thread.State: BLOCKED (on object monitor)
-      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:293)
-      - waiting to lock &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
-      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
-      at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:832)
-      at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2028)
-      at org.apache.hadoop.mapred.TaskTracker$LaunchTaskWorker.run(TaskTracker.java:1995)
-
-   "TaskRunner for attempt_201211271955_2504482_m_000002_0" daemon prio=10 tid=0x00007fe8af69d800 nid=0x2b86 runnable [0x000000004c16b000]
+    <pre><code>   "TaskRunner for attempt_201211271955_2504482_m_000002_0" daemon prio=10 tid=0x00007fe8af69d800 nid=0x2b86 runnable [0x000000004c16b000]
       java.lang.Thread.State: RUNNABLE
-      at java.io.UnixFileSystem.createDirectory(Native Method)
-      at java.io.File.mkdir(File.java:1157)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:56)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
-      at org.apache.hadoop.util.DiskChecker.checkDir(DiskChecker.java:72)
-      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.createPath(LocalDirAllocator.java:257)
-      at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:335)
-      - locked &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
-      at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
-      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:251)
-      - locked &lt;0x00000000a0154ab8&gt; (a java.util.TreeMap)
-      at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:180)
-      at org.apache.hadoop.mapred.TaskRunner.run(TaskRunner.java:167)
-</code></pre></li>
-<li><p>ps uxf，看子进程</p></li>
+   	at java.io.UnixFileSystem.createDirectory(Native Method)
+   	at java.io.File.mkdir(File.java:1157)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:56)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.mkdirsWithExistsCheck(DiskChecker.java:66)
+   	at org.apache.hadoop.util.DiskChecker.checkDir(DiskChecker.java:72)
+   	at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.createPath(LocalDirAllocator.java:257)
+   	at org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:335)
+   	- locked &lt;0x00000000a00fced0&gt; (a org.apache.hadoop.fs.LocalDirAllocator$AllocatorPerContext)
+   	at org.apache.hadoop.fs.LocalDirAllocator.getLocalPathForWrite(LocalDirAllocator.java:128)
+   	at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:251)
+   	- locked &lt;0x00000000a0154ab8&gt; (a java.util.TreeMap)
+   	at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:180)
+   	at org.apache.hadoop.mapred.TaskRunner.run(TaskRunner.java:167)
+</code></pre>
+  </li>
+  <li>
+    <p>ps uxf，看子进程</p>
+  </li>
 </ul>
-
 
 <p>hadoop 11031 0.0 0.0 59000 708 ? D Jan03 0:00 _du -sk /disk2/data</p>
 
 <ul>
-<li><p>问题原因</p>
+  <li>
+    <p>问题原因</p>
 
-<p>disk2坏盘</p></li>
-<li><p>临时解决办法</p>
+    <p>disk2坏盘</p>
+  </li>
+  <li>
+    <p>临时解决办法
+       $HADOOP_HOME/bin/hadoop-deamon.sh stop tasktracker 
+       如果这样终止不掉
+       那么
+       $kill -9 13560</p>
+  </li>
+  <li>
+    <p>后期解决方案</p>
 
-<pre><code>   $HADOOP_HOME/bin/hadoop-deamon.sh stop tasktracker 
-   如果这样终止不掉
-   那么
-   $kill -9 13560
-</code></pre></li>
-<li><p>后期解决方案</p>
-
-<p>当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</p></li>
+    <p>当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</p>
+  </li>
 </ul>
 
 </div>
@@ -228,6 +236,8 @@
         <a class="basic-alignment left" href="/blog/2012/12/28/hive-hadoop-define-proper-reduce-num/" title="Previous Post: Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀">&laquo; Hadoop和Hive中如何确定合适的reduce task个数使得数据分发均匀</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/01/04/hive-array-map-structs/" title="Next Post: HIVE中map，array和structs使用">HIVE中map，array和structs使用 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -244,11 +254,15 @@
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 130.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(4)</a> <a href='/blog/categories/linux' style='font-size: 130.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 115.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 124.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(5)</a> <a href='/blog/categories/linux' style='font-size: 124.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/04/hive-array-map-structs/">HIVE中map，array和structs使用</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/04/hadoop-task-unassigned/">map task 或 reduce task 一直处于UNASSIGNED状态</a>
@@ -264,10 +278,6 @@
     
       <li class="post">
         <a href="/blog/2012/12/28/hive-install/">hive安装和配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a>
       </li>
     
   </ul>

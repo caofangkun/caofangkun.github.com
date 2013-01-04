@@ -112,22 +112,21 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   </header>
 
 
-<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">mkdir</span> <span class="p">.</span><span class="nx">ssh</span>
-</span><span class='line'><span class="nx">cd</span> <span class="p">.</span><span class="nx">ssh</span>
-</span><span class='line'><span class="nx">sudo</span> <span class="nx">chmod</span> <span class="mi">700</span> <span class="p">.</span> <span class="c1">//这一步很重要   </span>
-</span><span class='line'><span class="nx">ssh</span><span class="o">-</span><span class="nx">keygen</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rsa</span>
-</span><span class='line'><span class="nx">cat</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span> <span class="o">&gt;&gt;</span> <span class="nx">authorized_keys</span>
-</span><span class='line'>  <span class="err">当然也可以：</span> <span class="nx">cp</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span>  <span class="nx">authorized_keys</span>
-</span><span class='line'><span class="nx">chmod</span> <span class="mi">644</span> <span class="nx">authorized_keys</span> <span class="c1">//这一步很重要  </span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">mkdir</span> <span class="p">.</span><span class="nx">ssh</span>
+</span><span class="line"><span class="nx">cd</span> <span class="p">.</span><span class="nx">ssh</span>
+</span><span class="line"><span class="nx">sudo</span> <span class="nx">chmod</span> <span class="mi">700</span> <span class="p">.</span> <span class="c1">//这一步很重要   </span>
+</span><span class="line"><span class="nx">ssh</span><span class="o">-</span><span class="nx">keygen</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rsa</span>
+</span><span class="line"><span class="nx">cat</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span> <span class="o">&gt;&gt;</span> <span class="nx">authorized_keys</span>
+</span><span class="line">  <span class="err">当然也可以：</span> <span class="nx">cp</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span>  <span class="nx">authorized_keys</span>
+</span><span class="line"><span class="nx">chmod</span> <span class="mi">644</span> <span class="nx">authorized_keys</span> <span class="c1">//这一步很重要  </span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -201,11 +200,15 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 130.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(4)</a> <a href='/blog/categories/linux' style='font-size: 130.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 115.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 124.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(5)</a> <a href='/blog/categories/linux' style='font-size: 124.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/04/hive-array-map-structs/">HIVE中map，array和structs使用</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/04/hadoop-task-unassigned/">map task 或 reduce task 一直处于UNASSIGNED状态</a>
@@ -221,10 +224,6 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
     
       <li class="post">
         <a href="/blog/2012/12/28/hive-install/">hive安装和配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a>
       </li>
     
   </ul>

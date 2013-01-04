@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: github - 有间博客</title>
+  <title>HIVE中map，array和structs使用 - 有间博客</title>
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="Tag: github">
+  <meta name="description" content="关于数组的操作说明： drop table if exists table2; create table table2 (a array&lt;string&gt;, b array&lt;string&gt;) ROW FORMAT DELIMITED FIELDS TERMINATED BY &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caokun.metags/github/">
+  <link rel="canonical" href="http://caokun.me/blog/2013/01/04/hive-array-map-structs/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,42 +73,200 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Github</h1>
+    
+      <h1 class="entry-title">HIVE中map，array和structs使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-04T14:16:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><ul>
+  <li>
+    <p>关于数组的操作说明：</p>
 
-  
-  <h2>2012</h2>
+    <pre><code>   drop table if exists table2;
+   create table table2 (a array&lt;string&gt;, b array&lt;string&gt;)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY '\t'
+   COLLECTION ITEMS TERMINATED BY ',';
+     
+   load data local inpath "../hive/examples/files/arraytest.txt"  overwrite into table table2;
+     
+   arraytest.txt中的数据形式为：（不同数组间用\t分割，同一数组内不同元素用逗号分割）
+   b00,b01        b00,b01
+   b00,b01        b00,b01
+   b00,b01        b00,b01
+   b00,b01        b00,b01
+     
+     
+   hive&gt; select * from table2;
+   OK
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   Time taken: 0.056 seconds
+     
+   hive&gt; select a from table2;
+   OK
+   ["b00","b01"]
+   ["b00","b01"]
+   ["b00","b01"]
+   ["b00","b01"]
+   Time taken: 15.903 seconds
+     
+   hive&gt; select a[0] from table2;
+   OK
+   b00
+   b00
+   b00
+   b00
+   Time taken: 12.913 seconds
+     
+   hive&gt; select * from table2 where a[0] = b[0];
+   OK
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   ["b00","b01"]   ["b00","b01"]
+   Time taken: 11.803 seconds
+</code></pre>
+  </li>
+  <li>
+    <p>关于map的操作说明：</p>
 
-<article>
-  
-
-<h1><a href="/blog/2012/12/26/build-blog-using-github-and-octopress/">使用GitHub和OctoPress搭建个人blog</a></h1>
-<time datetime="2012-12-26T20:33:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>26</span> <span class='year'>2012</span></time>
-
-<footer>
-
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-
-
-  <span class="tags">tagged with <a class='tag' href='//github/'>github</a>, <a class='tag' href='//octopress/'>octopress</a></span>
-
-</footer>
-
-
-</article>
-
+    <pre><code>   drop table if exists table2;
+   CREATE TABLE table2 (foo STRING , bar MAP&lt;STRING, STRING&gt;)
+   ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY '\t'
+   COLLECTION ITEMS TERMINATED BY ','
+   MAP KEYS TERMINATED BY ':'
+   STORED AS TEXTFILE;
+     
+   load data local inpath "../hive/examples/files/maptest.txt"  overwrite into table table2;
+	 
+   maptest.txt中的文件格式为：（不同列之间用一个tab分割，map中key和value用冒号分割，不同K/V间用逗号分割）
+   a00        b0:b01,b1:b11
+   a01        b1:b11,b2:b12
+   a02        b2:b12,b3:b13
+   a03        b3:b13,b4:b14
+     
+   select bar from table2;
+   OK
+   {"b0":"b01","b1":"b11"}
+   {"b1":"b11","b2":"b12"}
+   {"b2":"b12","b3":"b13"}
+   {"b3":"b13","b4":"b14"}
+   Time taken: 19.237 seconds
+	 
+   怎么根据 key来查询value呢？
+   hive&gt; select bar['b1'] from table2;
+   OK
+   b11
+   b11
+   NULL
+   NULL
+   Time taken: 11.65 seconds
+     
+   查看map中的键值对个数：
+   select size(bar) from table2;
+   OK
+   2
+   2
+   2
+   2
+   Time taken: 12.137 seconds
+</code></pre>
+  </li>
+</ul>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">CaoKun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-04T14:16:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hive/'>hive</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='//array/'>array</a>, <a class='tag' href='//map/'>map</a>, <a class='tag' href='//structs/'>structs</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/04/hadoop-task-unassigned/" title="Previous Post: map task 或 reduce task 一直处于UNASSIGNED状态">&laquo; map task 或 reduce task 一直处于UNASSIGNED状态</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -174,7 +332,10 @@
       var disqus_shortname = 'caokunme';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caokun.me/blog/2013/01/04/hive-array-map-structs/';
+        var disqus_url = 'http://caokun.me/blog/2013/01/04/hive-array-map-structs/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

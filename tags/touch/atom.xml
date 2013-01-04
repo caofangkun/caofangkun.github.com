@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: touch | 有间博客]]></title>
   <link href="http://caokun.me/tags/touch/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2013-01-04T11:25:58+08:00</updated>
+  <updated>2013-01-04T14:17:44+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -18,34 +18,29 @@
     <link href="http://caokun.me/blog/2012/12/27/hive-touch/"/>
     <updated>2012-12-27T20:07:00+08:00</updated>
     <id>http://caokun.me/blog/2012/12/27/hive-touch</id>
-    <content type="html"><![CDATA[<h3>wiki</h3>
-
+    <content type="html"><![CDATA[<h3 id="wiki">wiki</h3>
 <ul>
-<li><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTableTouch">Alter Table Touch</a></li>
+  <li><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTableTouch">Alter Table Touch</a></li>
 </ul>
 
-
-<h3>jira</h3>
-
+<h3 id="jira">jira</h3>
 <ul>
-<li><a href="https://issues.apache.org/jira/browse/HIVE-1300">HIVE-1300</a></li>
+  <li><a href="https://issues.apache.org/jira/browse/HIVE-1300">HIVE-1300</a></li>
 </ul>
 
-
-<h3>作用</h3>
-
+<h3 id="section">作用</h3>
 <p>读取元数据信息，然后再把元数据信息重新写入到元数据库中。</p>
 
 <p>解决的问题场景一：
 用户写了个hook来记录所有表和分区被改动的操作日志，同时有个外部脚本直接去修改了HDFS中的文件，
 因为操作是在hive之外完成的，那么这个修改过程也就不会记录到操作日志中。这时这个外部脚本是可以通过调用touch命令来标记出有改动。</p>
 
-<h3>使用方式</h3>
-
+<h3 id="section-1">使用方式</h3>
 <pre><code>    ALTER TABLE tstsrc TOUCH;
     ALTER TABLE tstsrcpart TOUCH;
     ALTER TABLE tstsrcpart TOUCH PARTITION (ds='2008-04-08', hr='12');
 </code></pre>
+
 ]]></content>
   </entry>
   

@@ -102,22 +102,19 @@
   </header>
 
 
-<div class="entry-content"><h3>Install MySQL</h3>
-
+<div class="entry-content"><h3 id="install-mysql">Install MySQL</h3>
 <pre><code>    sudo apt-get install mysql-server 
     sudo apt-get install mysql 
     sudo apt-get install mysql-devel
     sudo apt-get install mysql-client
 </code></pre>
 
-<h3>Start MySQL Server</h3>
-
+<h3 id="start-mysql-server">Start MySQL Server</h3>
 <pre><code>    service mysql start
     chkconfig --levels 235 mysql on
 </code></pre>
 
-<h3>Config root user password</h3>
-
+<h3 id="config-root-user-password">Config root user password</h3>
 <pre><code>    mysql&gt; use mysql;
     mysql&gt; update user set password=PASSWORD("root") where User='root';
     mysql&gt; flush privileges;
@@ -198,11 +195,15 @@
   
     <section>
   <h1>Category Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 130.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(4)</a> <a href='/blog/categories/linux' style='font-size: 130.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 115.0%'>octopress(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/hadoop' style='font-size: 124.0%'>hadoop(2)</a> <a href='/blog/categories/hive' style='font-size: 160.0%'>hive(5)</a> <a href='/blog/categories/linux' style='font-size: 124.0%'>linux(2)</a> <a href='/blog/categories/octopress' style='font-size: 112.0%'>octopress(1)</a> </span>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/04/hive-array-map-structs/">HIVE中map，array和structs使用</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/04/hadoop-task-unassigned/">map task 或 reduce task 一直处于UNASSIGNED状态</a>
@@ -218,10 +219,6 @@
     
       <li class="post">
         <a href="/blog/2012/12/28/hive-install/">hive安装和配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/27/hive-touch/">Hive中的touch</a>
       </li>
     
   </ul>

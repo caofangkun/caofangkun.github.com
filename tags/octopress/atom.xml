@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: octopress | 有间博客]]></title>
   <link href="http://caokun.me/tags/octopress/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2013-01-04T11:25:58+08:00</updated>
+  <updated>2013-01-04T14:17:44+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -18,53 +18,49 @@
     <link href="http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress/"/>
     <updated>2012-12-26T20:33:00+08:00</updated>
     <id>http://caokun.me/blog/2012/12/26/build-blog-using-github-and-octopress</id>
-    <content type="html"><![CDATA[<h2>安装GitHub</h2>
-
-<p>自己Google吧</p>
-
-<h2>创建github工程并配置免密码服务</h2>
-
-<ul>
-<li>建github工程
-工程名一般为username.github.com</li>
-<li><a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
-
-<h2>安装Ruby</h2></li>
-<li>安装Ruby 1.9.3
+    <content type="html"><![CDATA[<h2 id="github">安装GitHub</h2>
+<p>自己Google吧
+##创建github工程并配置免密码服务
+* 建github工程
+工程名一般为username.github.com
+* <a href="https://help.github.com/articles/generating-ssh-keys">配置免密码服务</a>
+##安装Ruby
+* 安装Ruby 1.9.3
 <code>javascript
-sudo apt-get install ruby1.9.3
-sudo aptitude install ruby1.9.1-dev
+  sudo apt-get install ruby1.9.3
+  sudo aptitude install ruby1.9.1-dev
 </code>
 可以检查下系统的 /usr/bin下安装有多少个版本的ruby
 并将默认的软链接指向到1.9.3版本
 <code>javascript
 ~# rm -rf /usr/bin/ruby  
-~# ln -s   /usr/bin/ruby1.9.3  /usr/bin/ruby
+~# ln -s   /usr/bin/ruby1.9.3  /usr/bin/ruby 
 ~# ruby -v
 ruby 1.9.3p0 (2011-10-30 revision 33570) [i686-linux]
-</code></li>
-<li>安装依赖
-<code>javascript
-gem install bundler
-rbenv rehash    
-bundle install
 </code>
-
-<h2>安装Octopress</h2></li>
-<li>安装默认的Octopress主题
+* 安装依赖
 <code>javascript
-rake install
-</code></li>
-<li>生产部署文件
+  gem install bundler
+  rbenv rehash    
+  bundle install
+</code>
+##安装Octopress
+* 安装默认的Octopress主题
+<code>javascript
+  rake install
+</code>
+* 生产部署文件
 <code>javascript
 rake setup_github_pages
-</code></li>
-<li><p>修改CNAME文件
+</code>
+* 修改CNAME文件
 <code>javascript
-~/myworkspace/octopress/source$ cat CNAME
+~/myworkspace/octopress/source$ cat CNAME 
 caokun.me
-</code></p></li>
-<li><p>编译并部署
+</code></p>
+
+<ul>
+  <li>编译并部署
 <code>javascript
 rake generate
 rake deploy
@@ -78,37 +74,31 @@ rake gen_deploy
 rake generate
 rake preview
 </code>
-然后打开浏览器访问localhost:4000就可以看到修改后的样子了</p></li>
-<li>提交代码到Github
+然后打开浏览器访问localhost:4000就可以看到修改后的样子了</li>
+  <li>提交代码到Github
 <code>javascript
 git add .
 git commit -m 'your message'
 git push origin source  //需要按要求输入用户信息
 </code></li>
-<li>预览区域<code>代码高亮</code></li>
-<li>所有选项自动记忆</li>
+  <li>预览区域<code>代码高亮</code></li>
+  <li>所有选项自动记忆</li>
 </ul>
 
-
-<h2>参考</h2>
-
+<h2 id="section">参考</h2>
 <ul>
-<li><a href="http://octopress.org/docs/setup/">octopress setup</a></li>
-<li><a href="http://sourceforge.net/adobe/tlf/wiki/markdown_syntax/">markdown语法说明</a></li>
+  <li><a href="http://octopress.org/docs/setup/">octopress setup</a> </li>
+  <li><a href="http://sourceforge.net/adobe/tlf/wiki/markdown_syntax/">markdown语法说明</a></li>
 </ul>
 
+<h2 id="section-1">关于作者</h2>
 
-<h2>关于作者</h2>
-
-<p>```javascript
-  var ihubo = {</p>
-
-<pre><code>nickName  : "CaoKun",
-site : "http://caokun.me"
-</code></pre>
-
-<p>  }
-```</p>
+<p><code>javascript
+  var ihubo = {
+    nickName  : "CaoKun",
+    site : "http://caokun.me"
+  }
+</code></p>
 ]]></content>
   </entry>
   
