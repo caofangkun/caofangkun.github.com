@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hadoop task unassigned - CaoKun's Blog</title>
+  <title>map task 或 reduce task 一直处于UNASSIGNED状态 - CaoKun's Blog</title>
   <meta name="author" content="CaoKun">
 
   
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hadoop Task Unassigned</h1>
+      <h1 class="entry-title">Map Task 或 Reduce Task 一直处于UNASSIGNED状态</h1>
     
     
       <p class="meta">
@@ -151,10 +151,16 @@
       at org.apache.hadoop.filecache.DistributedCache.getLocalCache(DistributedCache.java:180)
       at org.apache.hadoop.mapred.TaskRunner.run(TaskRunner.java:167)
 </code></pre></li>
-<li><p>ps uxf，看子进程
-hadoop 11031 0.0 0.0 59000 708 ? D Jan03 0:00 _du -sk /disk2/data</p></li>
-<li><p>问题原因
-disk2坏盘</p></li>
+<li><p>ps uxf，看子进程</p></li>
+</ul>
+
+
+<p>hadoop 11031 0.0 0.0 59000 708 ? D Jan03 0:00 _du -sk /disk2/data</p>
+
+<ul>
+<li><p>问题原因</p>
+
+<p>disk2坏盘</p></li>
 <li><p>临时解决办法</p>
 
 <pre><code>   $HADOOP_HOME/bin/hadoop-deamon.sh stop tasktracker 
@@ -162,8 +168,9 @@ disk2坏盘</p></li>
    那么
    $kill -9 13560
 </code></pre></li>
-<li>后期解决方案
-当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</li>
+<li><p>后期解决方案</p>
+
+<p>当tasktracker因为磁盘故障或者oom等导致task一直处于UNASSIGNED状态时，应该触发预测执行，防止job长期被hang住。</p></li>
 </ul>
 
 </div>
@@ -246,7 +253,7 @@ disk2坏盘</p></li>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/01/04/hadoop-task-unassigned/">hadoop task unassigned</a>
+        <a href="/blog/2013/01/04/hadoop-task-unassigned/">map task 或 reduce task 一直处于UNASSIGNED状态</a>
       </li>
     
       <li class="post">
