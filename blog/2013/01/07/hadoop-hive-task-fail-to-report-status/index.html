@@ -5,22 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ssh免密码登录 - 有间博客</title>
+  <title>关于Task failed to report status for 601 seconds 错误 - 有间博客</title>
   <meta name="author" content="CaoKun">
 
   
-  <meta name="description" content="1
-2
-3
-4
-5
-6
-7
-mkdir .ssh
-cd .ssh
-sudo chmod 700 . //这一步很重要 ssh-keygen -t rsa
-cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;">
-  <meta name="keywords" content="ssh,linux">
+  <meta name="description" content="问题现象 Task attempt2012112719552680877m000004_0 failed to report status for 601 seconds. Killing! 出现这个错误的原因是：运行在Hadoop上的作业，默认配置下task需要在10分钟内汇报自己的进度， &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -28,7 +18,7 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://caokun.me/blog/2012/12/26/ssh-without-password/">
+  <link rel="canonical" href="http://caokun.me/blog/2013/01/07/hadoop-hive-task-fail-to-report-status/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +77,7 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   
   <header>
     
-      <h1 class="entry-title">Ssh免密码登录</h1>
+      <h1 class="entry-title">关于Task Failed to Report Status for 601 Seconds 错误</h1>
     
     
       <p class="meta">
@@ -103,7 +93,7 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   
 
 
-<time datetime="2012-12-26T13:09:00+08:00" pubdate data-updated="true">Dec 26<span>th</span>, 2012</time>
+<time datetime="2013-01-07T11:30:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -112,21 +102,84 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   </header>
 
 
-<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">mkdir</span> <span class="p">.</span><span class="nx">ssh</span>
-</span><span class="line"><span class="nx">cd</span> <span class="p">.</span><span class="nx">ssh</span>
-</span><span class="line"><span class="nx">sudo</span> <span class="nx">chmod</span> <span class="mi">700</span> <span class="p">.</span> <span class="c1">//这一步很重要   </span>
-</span><span class="line"><span class="nx">ssh</span><span class="o">-</span><span class="nx">keygen</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rsa</span>
-</span><span class="line"><span class="nx">cat</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span> <span class="o">&gt;&gt;</span> <span class="nx">authorized_keys</span>
-</span><span class="line">  <span class="err">当然也可以：</span> <span class="nx">cp</span> <span class="nx">rsa_d</span><span class="p">.</span><span class="nx">pub</span>  <span class="nx">authorized_keys</span>
-</span><span class="line"><span class="nx">chmod</span> <span class="mi">644</span> <span class="nx">authorized_keys</span> <span class="c1">//这一步很重要  </span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="entry-content"><h3 id="section">问题现象</h3>
+
+<p>Task attempt<em>201211271955</em>2680877<em>m</em>000004_0 failed to report status for 601 seconds. Killing!</p>
+
+<p>出现这个错误的原因是：运行在Hadoop上的作业，默认配置下task需要在10分钟内汇报自己的进度，如果超过10分钟没有</p>
+
+<p>汇报进度的话，那么taskTracker就会认为该task已经失败，并汇报给jobTracker,通常是因为处理一行记录超过了10分钟</p>
+
+<h3 id="section-1">常规解决方法:</h3>
+
+<p>首先可以自己打印log查看程序慢在哪一步，然后做针对性优化</p>
+
+<p>另外也在适当的地方（比如map或reduce函数内部）加上reporter.progress()，定期汇报进度</p>
+
+<p>如果你确认task汇报进度的时间间隔是要超过10分钟，可以修改mapred.task.timeout参数，默认值是600000(毫秒)，适当调大该值，设为0表示没有超时。</p>
+
+<h3 id="section-2">排查过程</h3>
+<ul>
+  <li>
+    <p>登录到hung住的节点机器</p>
+
+    <pre><code>   $ps uxf | grep 201212271955_2688574  --查看到这个attemp task执行的子进程id 
+   $jstack 16113 &gt; /tmp/js.log --查看这个子进程的jstack信息
+   $vi /tmp/js.log --查看日志信息，看看这么多时间内都在干什么
+</code></pre>
+  </li>
+</ul>
+
+<p>可以查看到如下信息：</p>
+
+<pre><code>     "main" prio=10 tid=0x000000004046a800 nid=0x3ef3 runnable [0x00000000417f7000]
+      java.lang.Thread.State: RUNNABLE
+           at org.apache.hadoop.io.Text.setCapacity(Text.java:240)
+           at org.apache.hadoop.io.Text.append(Text.java:216)
+           at org.apache.hadoop.util.LineReader.readLine(LineReader.java:141)
+           at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:133)
+           - locked &lt;0x00000000e5f012c0&gt; (a org.apache.hadoop.mapred.LineRecordReader)
+           at org.apache.hadoop.mapred.LineRecordReader.next(LineRecordReader.java:38)
+           at org.apache.hadoop.hive.ql.io.HiveContextAwareRecordReader.doNext(HiveContextAwareRecordReader.java:273)
+           at org.apache.hadoop.hive.ql.io.CombineHiveRecordReader.doNext(CombineHiveRecordReader.java:101)
+           at org.apache.hadoop.hive.ql.io.CombineHiveRecordReader.doNext(CombineHiveRecordReader.java:41)
+           at org.apache.hadoop.hive.ql.io.HiveContextAwareRecordReader.next(HiveContextAwareRecordReader.java:108)
+           at org.apache.hadoop.hive.shims.Hadoop20Shims$CombineFileRecordReader.doNextWithExceptionHandler(Hadoop20Shims.java:307)
+           at org.apache.hadoop.hive.shims.Hadoop20Shims$CombineFileRecordReader.next(Hadoop20Shims.java:225)
+           at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.moveToNext(MapTask.java:198)
+           - locked &lt;0x00000000e5f013a0&gt; (a org.apache.hadoop.mapred.MapTask$TrackedRecordReader)
+           at org.apache.hadoop.mapred.MapTask$TrackedRecordReader.next(MapTask.java:183)
+           - locked &lt;0x00000000e5f013a0&gt; (a org.apache.hadoop.mapred.MapTask$TrackedRecordReader)
+           at org.apache.hadoop.mapred.MapRunner.run(MapRunner.java:48)
+           at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:367)
+           at org.apache.hadoop.mapred.MapTask.run(MapTask.java:317)
+           at org.apache.hadoop.mapred.Child.main(Child.java:167)
+</code></pre>
+
+<p>从上面信息可以看到：</p>
+
+<p>1：这是一个Hive SQL job</p>
+
+<p>2: 在处理一行数据，这行数据非常长，然后text不断进行扩容来存储</p>
+
+<ul>
+  <li>Hive SQL 排查</li>
+</ul>
+
+<p>发现这个SQL是 select count(*) from tablename;这样的语句，而这个语句在另一台服务器上可以正常执行</p>
+
+<p>通过select * from tablename limit 1; 发现显示的第一个字段内容是 SEQ”org.apache.hadoop.io.BytesWriteableorg.apache.hadoop.io.Text….这样的内容</p>
+
+<p>这说明表内的数据实际是SequenceFile格式的，而将整个SEQ 文件作为了一列的一行数据进行了处理！</p>
+
+<p>查看desc formatted tablename; 发现果然表模式定义中定义的是SimpleText存储格式的。问题就此定位到。</p>
+
+<ul>
+  <li>向社区提个BUG</li>
+</ul>
+
+<p><a href="https://issues.apache.org/jira/browse/HIVE-3867">HIVE-3867</a></p>
+
 </div>
 
 
@@ -149,23 +202,17 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
   
 
 
-<time datetime="2012-12-26T13:09:00+08:00" pubdate data-updated="true">Dec 26<span>th</span>, 2012</time>
+<time datetime="2013-01-07T11:30:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>, <a class='category' href='/blog/categories/hive/'>hive</a>
   
 </span>
 
 
       
-
-<span class="tags">
-  
-    <a class='tag' href='//linux/'>linux</a>, <a class='tag' href='//ssh/'>ssh</a>
-  
-</span>
 
 
     </p>
@@ -181,8 +228,8 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/01/04/hive-array-map-structs/" title="Previous Post: HIVE中map，array和structs使用">&laquo; HIVE中map，array和structs使用</a>
       
-        <a class="basic-alignment right" href="/blog/2012/12/26/hive-configuration-explanations/" title="Next Post: Hive配置文件说明">Hive配置文件说明 &raquo;</a>
       
     </p>
   </footer>
@@ -259,8 +306,8 @@ cat rsa_d.pub &gt;&gt; authorized_keys 当然也可以： cp rsa_d.pub &hellip;"
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://caokun.me/blog/2012/12/26/ssh-without-password/';
-        var disqus_url = 'http://caokun.me/blog/2012/12/26/ssh-without-password/';
+        var disqus_identifier = 'http://caokun.me/blog/2013/01/07/hadoop-hive-task-fail-to-report-status/';
+        var disqus_url = 'http://caokun.me/blog/2013/01/07/hadoop-hive-task-fail-to-report-status/';
         var disqus_script = 'embed.js';
       
     (function () {
