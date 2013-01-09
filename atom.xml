@@ -4,7 +4,7 @@
   <title><![CDATA[有间博客]]></title>
   <link href="http://caokun.me/atom.xml" rel="self"/>
   <link href="http://caokun.me/"/>
-  <updated>2013-01-07T11:36:02+08:00</updated>
+  <updated>2013-01-09T12:02:14+08:00</updated>
   <id>http://caokun.me/</id>
   <author>
     <name><![CDATA[CaoKun]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hadoop Error List]]></title>
+    <link href="http://caokun.me/blog/2013/01/09/hadoop-error-list/"/>
+    <updated>2013-01-09T11:59:00+08:00</updated>
+    <id>http://caokun.me/blog/2013/01/09/hadoop-error-list</id>
+    <content type="html"><![CDATA[<ul>
+  <li><a href="http://caokun.me/blog/2013/01/07/hadoop-hive-task-fail-to-report-status/">关于Task Failed to Report Status for 601 Seconds 错误</a></li>
+  <li><a href="http://caokun.me/blog/2013/01/04/hadoop-task-unassigned/">Map Task 或 Reduce Task 一直处于UNASSIGNED状态</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Task failed to report status for 601 seconds 错误]]></title>
